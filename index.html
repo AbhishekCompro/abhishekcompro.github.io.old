@@ -266,9 +266,10 @@
               <div class="row">
                 <form action="#" method="get" class="sidebar-form">
                   <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input id="searchActions" type="text" name="q" class="form-control" placeholder="Search...">
                           <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn2" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            <span type="submit" name="search" id="search-btn2" class="btn btn-flat"><i class="fa fa-search"></i></span>
+                            <!--<button type="submit" name="search" id="search-btn2" class="btn btn-flat"><i class="fa fa-search"></i></button>-->
                           </span>
                   </div>
                 </form>
@@ -277,23 +278,23 @@
           </div><!-- /.box -->
           <!-- general form elements -->
 
-          <div class="box box-solid" style="max-width: 300px;">
+          <div class="box box-solid col-md-6">
             <div class="box-body no-padding">
               <table id="layout-skins-list" class="table table-striped bring-up nth-2-center">
                 <thead>
                 <tr>
-                  <th style="width: 210px;">Actions</th>
+                  <th style="width: 90%;">Actions</th>
                   <th>Preview</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <td><code>skin-blue</code></td>
+                  <td><code>skin-blueskin</code></td>
                   <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
                 </tr>
                 <tr>
                   <td><code>skin-black-light</code></td>
-                  <td><a href="#" class="btn bg-black btn-xs"><i class="fa fa-eye"></i></a></td>
+                  <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
                 </tr>
                 </tbody>
               </table>
@@ -528,6 +529,7 @@
 <script src="dist/js/demo.js"></script>
 
 <script src="./js/indexHelper.js"></script>
+<script src="./js/search.js"></script>
 <script>
 
   // Put the object into storage
@@ -539,6 +541,12 @@
   console.log('taskDatao: ', JSON.parse(taskDatao));
 
 </script>
+
+<!--<script type="text/javascript">
+  window.onbeforeunload = function() {
+    return "Are you sure you want to refresh the page ? This will delete all unsaved data!";
+  }
+</script>-->
 
 
 </body>
