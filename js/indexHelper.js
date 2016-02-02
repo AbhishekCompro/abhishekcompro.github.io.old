@@ -90,29 +90,11 @@ console.log(taskData.items[0].methods[1].init);
 console.log(taskData);
 
 
-
-
-/*    var i1m1a1 = $('#i1m1a1');
- var i = $('#p_scents p').size() + 1;
-
- $('#addnext-i1m1a1').click(function(){
- $('<p><label for="i1m1a1"><input type="text" id="p_scnt" size="20" name="p_scnt_' + i +'" value="" placeholder="Input Value" /></label> <a href="#" id="remScnt">Remove</a></p>').appendTo(i1m1a1);
- i++;
- return false;
- });
-
- $('#aremScnt').click(function(){
- if( i > 2 ) {
- $(this).parents('p').remove();
- i--;
- }
- return false;
- });*/
 function updateBreadcrum(data){
 
     if(data != undefined){
 
-        console.log('updating breadcrum for .. ');
+        console.log('updating breadcrum for .. ' + data.item + data.method + data.action );
         $('#b_item').html('<i class="fa fa-dashboard"> Item ' + data.item);
         $('#b_method').html('Method ' + data.method);
         $('#b_action').html('Action ' + data.action);
@@ -223,6 +205,8 @@ $('.sidebar-menu').on('click', '.delete-action-node', function() {
     var removeLSMData = actionTree.data('tree');
     console.log(removeLSMData);
 
+    updateBreadcrum({"item":"","method":"","action":""});
+
     actionTree.remove();
 
 });
@@ -238,6 +222,8 @@ $('.sidebar-menu').on('click', '.delete-method-node', function() {
     //todo: delete data from lsm
     var removeLSMData = methodTree.data('tree');
     console.log(removeLSMData);
+
+    updateBreadcrum({"item":"","method":"","action":""});
 
     methodTree.remove();
 
