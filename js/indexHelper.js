@@ -95,9 +95,15 @@ function updateBreadcrum(data){
     if(data != undefined){
 
         console.log('updating breadcrum for .. ' + data.item + data.method + data.action );
-        $('#b_item').html('<i class="fa fa-dashboard"> Item ' + data.item);
+        $('#b_item').html('Item ' + data.item);
         $('#b_method').html('Method ' + data.method);
         $('#b_action').html('Action ' + data.action);
+
+
+        $('#b_item').attr('data-item', data.item);
+        $('#b_method').attr('data-method', data.method);
+        $('#b_action').attr('data-action', data.action);
+
 
         // todo: set currentTreeNode here
 
@@ -228,4 +234,3 @@ $('.sidebar-menu').on('click', '.delete-method-node', function() {
     methodTree.remove();
 
 });
-
