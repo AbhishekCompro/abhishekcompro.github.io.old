@@ -31,6 +31,7 @@
   <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -52,20 +53,32 @@
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu" style="width: 600px; margin-top: 10px">
-          <div class="form-group">
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="inputTaskId" placeholder="Task Id..">
-            </div>
-              <button type="submit" class="btn btn-info pull-left">Save / Update</button>
+          <li class="dropdown user user-menu" style="width: 600px;">
+          <div class="form-group" style="margin-top: 20px">
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="inputTaskName" placeholder="Task Name..">
+              </div>
+              <div class="col-sm-4">
+                  <input type="text" class="form-control" id="inputTaskId" placeholder="Task Id..">
+              </div>
           </div>
+            <div style="margin-top: -15px">
+                <a class="btn btn-app" data-toggle="modal" data-target="#taskDescriptionModal">
+                    <i class="fa fa-edit"></i> Description
+                </a>
+            </div>
         </li>
+            <li class="dropdown user user-menu" style="width: 200px; margin: 20px 10px">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info pull-left">Save / Update</button>
+                </div>
+            </li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-spinner text-gray"></i>
               <span class="hidden-xs">Reset / New - Task</span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="width: 160px">
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -87,9 +100,9 @@
             </a>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+<!--          <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          </li>-->
         </ul>
       </div>
 
@@ -126,10 +139,9 @@
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Task</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Scenario T1</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Scenario A1</a></li>
-
+          <ul class="treeview-menu" id="scenario">
+            <li id="T1" class="active"><a href="#"><i class="fa fa-circle-o"></i> Scenario T1</a></li>
+            <li id="A1"><a href="#"><i class="fa fa-circle-o"></i> Scenario A1</a></li>
           </ul>
         </li>
 
@@ -206,9 +218,10 @@
         </li>
 
         <!--Extras-->
-        <li><a href="#"><i class="fa fa-code text-fuchsia"></i> <span>Preview XML</span></a></li>
+
         <li class="header">MISC</li>
         <!--<li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>-->
+        <li><a href="#"><i class="fa fa-code text-fuchsia"></i> <span>Preview XML</span></a></li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -218,14 +231,31 @@
   </aside>
 
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <!-- Main content -->
     <section class="content">
       <div class="row">
-
-        <div class="form-group" >
-          <textarea class="form-control" rows="3" placeholder="Task Description ..."></textarea>
-        </div>
+          <div class="modal fade" id="taskDescriptionModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body" style="height: 200px">
+                          <form>
+                              <div class="form-group">
+                                  <textarea class="form-control" id="message-text" style="height: 180px"></textarea>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save / Update</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
         <div class="box box-danger">
           <div class="box-header with-border">
@@ -234,10 +264,10 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-4">
-                <input type="text" class="form-control" placeholder="Method Type">
+                <input type="text" class="form-control" placeholder="Method Type (Keyboard)">
               </div>
               <div class="col-xs-4">
-                <input type="text" class="form-control" placeholder="Acceptance">
+                <input type="text" class="form-control" placeholder="Method Group (Acceptance;Primary)">
               </div>
               <div class="col-xs-4">
                 <button type="submit" class="btn btn-info pull-right">Save / Update</button>
@@ -246,14 +276,15 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
 
-        <section class="content-header">
+        <section class="content-header" style="height: 80px">
           <h1>
             Add Action Details
           </h1>
-          <ol class="breadcrumb">
-            <li><a href="#" id="b_item"><i class="fa fa-dashboard"></i>Item</a></li>
-            <li><a href="#" id="b_method">Method</a></li>
-            <li class="active" id="b_action">Action</li>
+          <ol class="breadcrumb" style="font-size: 24px">
+            <li><a href="#" data-scenario='T1' id="b_scenario"><i class="fa fa-dashboard"></i>Scenario T1</a></li>
+            <li><a href="#" data-item='1' id="b_item">Item 1</a></li>
+            <li><a href="#" data-method='1' id="b_method">Method 1</a></li>
+            <li class="active" data-action='1' id="b_action">Action 1</li>
           </ol>
         </section>
 
@@ -278,7 +309,7 @@
           </div><!-- /.box -->
           <!-- general form elements -->
 
-          <div class="box box-solid col-md-6">
+          <div class="box box-solid col-md-6" style="height: 500px; overflow: auto">
             <div class="box-body no-padding">
               <table id="layout-skins-list" class="table table-striped bring-up nth-2-center">
                 <thead>
@@ -288,14 +319,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td><code>skin-blueskin</code></td>
-                  <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
-                </tr>
-                <tr>
-                  <td><code>skin-black-light</code></td>
-                  <td><a href="#" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a></td>
-                </tr>
                 </tbody>
               </table>
             </div><!-- /.box-body -->
@@ -310,15 +333,16 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Details Form</h3>
+              <h3 class="box-title">Details Form &nbsp;&nbsp;</h3>
+                <span class="functionDisplayName"></span>
             </div><!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
-                  <div class="col-sm-12">
+                <div class="form-group" id="actionDetailsForm">
+<!--                  <div class="col-sm-12">
                     <input type="text" class="form-control" id="" placeholder="elementName">
-                  </div>
+                  </div>-->
                 </div>
               </div><!-- /.box-body -->
               <div class="box-footer">
@@ -530,6 +554,7 @@
 
 <script src="./js/indexHelper.js"></script>
 <script src="./js/search.js"></script>
+<script src="./js/treeHelper.js"></script>
 <script>
 
   // Put the object into storage
@@ -547,7 +572,6 @@
     return "Are you sure you want to refresh the page ? This will delete all unsaved data!";
   }
 </script>-->
-
 
 </body>
 </html>
