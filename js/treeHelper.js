@@ -16,7 +16,7 @@ $('#scenario').on('click','li' , function() {
 });
 
 $('.sidebar-menu').on('click', '.treeview', function() {
-    resetForm();
+    //resetForm();
 
 });
 
