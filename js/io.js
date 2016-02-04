@@ -11,10 +11,10 @@ var currentActionNumber = 1;
 
 var updateCurrentTreeNode = function(){
     // get and update from breadcrum
-    var currentScenario = 'T1';
-    var currentItemNumber = 1;
-    var currentMethodNumber = 1;
-    var currentActionNumber = 1;
+    currentScenario =   localStorage.getItem('currentScenario');
+    currentItemNumber = localStorage.getItem('currentItemNumber');
+    currentMethodNumber = localStorage.getItem('currentMethodNumber');
+    currentActionNumber = localStorage.getItem('currentActionNumber');
 }
 
 
@@ -114,9 +114,20 @@ console.log(taskData);
  * save task data to lsm
  */
 
+$( "#saveTaskDetails" ).click(function() {
+    updateCurrentTreeNode();
+    saveTaskData();
+});
 
+$( "#saveMethodDetails" ).click(function() {
+    updateCurrentTreeNode();
+    saveMethodData();
+});
 
-
+$( "#saveActionDetails" ).click(function() {
+    updateCurrentTreeNode();
+    saveActionData();
+});
 
 
 

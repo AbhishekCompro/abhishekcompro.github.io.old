@@ -5,9 +5,11 @@
 $('#scenario').on('click','li' , function() {
     $('#scenario li').attr('class', '');
     $(this).attr('class', 'active');
+    var currentScenario = $(this).attr('id');
 
     $('#b_scenario').html('<i class="fa fa-dashboard"> Scenario ' + $(this).attr('id'));
 
+    localStorage.setItem('currentScenario', JSON.stringify(currentScenario));
 
     $('#b_scenario').attr('data-scenario', $(this).attr('id'));
 

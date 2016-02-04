@@ -16,6 +16,10 @@ function updateBreadcrum(data){
         $('#b_method').attr('data-method', data.method);
         $('#b_action').attr('data-action', data.action);
 
+        localStorage.setItem('currentItemNumber', JSON.stringify(data.item));
+        localStorage.setItem('currentMethodNumber', JSON.stringify(data.method));
+        localStorage.setItem('currentActionNumber', JSON.stringify(data.action));
+
 
         // todo: set currentTreeNode here
 
