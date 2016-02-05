@@ -61,7 +61,9 @@ $('.sidebar-menu').on('click', '.add-method', function() {
 
     var methodTree = el.parent('.method-tree');
     addNewMethod(methodTree,clickedAddMethodNodeDataTree);
+    el.prev().find('.delete-method-node').remove();
     el.remove();
+
     methodTree.append('<li data-tree=\'{"item":"'+(parseInt(clickedAddMethodNodeDataTree.item))+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":""}\' class="add-method"><a href="#"><i class="fa fa-plus-square-o text-aqua"></i> <span>Add New Method</span></a></li>');
 
 });
@@ -75,6 +77,7 @@ $('.sidebar-menu').on('click', '.add-action', function() {
 
     var actionTree = el.parent('.action-tree');
     addNewAction(actionTree,clickedAddActionNodeDataTree);
+    el.prev().find('.delete-action-node').remove();
     el.remove();
     actionTree.append('<li data-tree=\'{"item":"'+(parseInt(clickedAddActionNodeDataTree.item))+'","method":"'+(parseInt(clickedAddActionNodeDataTree.method))+'","action":"'+(parseInt(clickedAddActionNodeDataTree.action) + 1)+'"}\' class="add-action"><a href="#"><i class="fa fa-plus-square-o text-lime"></i> <span>Add New Action</span></a></li>');
 
