@@ -14,17 +14,15 @@ updateCurrentTreeNode = function(){
     var currentScenarioLSM =   localStorage.getItem('currentScenario');
     if(currentScenarioLSM){currentScenario = currentScenarioLSM};
 
-    var currentItemNumberLSM = localStorage.getItem('currentItemNumber');
-    if(currentItemNumberLSM){currentItemNumber = currentItemNumberLSM};
+    var currentItemNumberLSM = JSON.parse(localStorage.getItem('currentItemNumber'));
+    if(currentItemNumberLSM){currentItemNumber = parseInt(currentItemNumberLSM)};
 
-    var currentMethodNumberLSM = localStorage.getItem('currentMethodNumber');
-    if(currentMethodNumberLSM){currentMethodNumber = currentMethodNumberLSM};
+    var currentMethodNumberLSM = JSON.parse(localStorage.getItem('currentMethodNumber'));
+    if(currentMethodNumberLSM){currentMethodNumber = parseInt(currentMethodNumberLSM)};
 
-    var currentActionNumberLSM = localStorage.getItem('currentActionNumber');
-    if(currentActionNumberLSM){currentActionNumber = currentActionNumberLSM};
+    var currentActionNumberLSM = JSON.parse(localStorage.getItem('currentActionNumber'));
+    if(currentActionNumberLSM){currentActionNumber = parseInt(currentActionNumberLSM)};
 
-    console.log('currentItemNumber' + currentItemNumber);
-    console.log('currentMethodNumber' + currentMethodNumber);
     taskData =   JSON.parse(localStorage.getItem('taskData'));
 };
 
@@ -72,8 +70,17 @@ var taskData = {
     ]
 };
 
-localStorage.setItem('taskData', JSON.stringify(taskData));
-updateCurrentTreeNode();
+resetLSM = function(){
+
+    localStorage.setItem('taskData', JSON.stringify(taskData));
+    updateCurrentTreeNode();
+
+    localStorage.setItem('currentItemNumber', JSON.stringify(1));
+    localStorage.setItem('currentMethodNumber', JSON.stringify(1));
+    localStorage.setItem('currentActionNumber', JSON.stringify(1));
+    localStorage.setItem('currentScenario', 'T1');
+
+}
 
 currentMethodDetails = {
     init: false,
@@ -231,6 +238,10 @@ $( "#exportXMLTop" ).click(function() {
     console.log('console.log(taskData.name) 2 ' + taskData);
 });
 
+
+$( "#resetLSM" ).click(function() {
+    resetLSM();
+});
 
 
 
