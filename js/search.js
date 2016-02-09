@@ -99,8 +99,8 @@ var updateDetailsForm = function(){
     var clickedNodeText = el.parent().parent().text();
     $(".functionDisplayName").text(clickedNodeText.trim());
 
-    var actionNodeFunction =  clickedNodeText.match(/[^;]*/);
-    $(".functionDisplayName").attr('id', actionNodeFunction);
+    var actionNodeFunction =  clickedNodeText.trim().replace(/ *\([^)]*\) */g, "");
+    $(".functionDisplayName").attr('name', actionNodeFunction + '()');
 
         var actionNodeArray ;
 

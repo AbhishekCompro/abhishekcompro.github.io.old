@@ -97,7 +97,7 @@
           <!-- User Account: style can be found in dropdown.less -->
 
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" id="exportXMLTop" data-toggle="dropdown">
               <i class="fa fa-file text-navy"></i>
               <span class="hidden-xs">Export XML File</span>
             </a>
@@ -248,7 +248,7 @@
                       <div class="modal-body" style="height: 200px">
                           <form>
                               <div class="form-group">
-                                  <textarea id="" class="form-control" id="message-text" style="height: 180px"></textarea>
+                                  <textarea id="taskDescription" class="form-control" style="height: 180px"></textarea>
                               </div>
                           </form>
                       </div>
@@ -288,10 +288,10 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-4">
-                <input type="text" class="form-control" placeholder="Method Type (Keyboard)">
+                <input type="text" id="method-type" class="form-control" placeholder="Method Type (Keyboard)">
               </div>
               <div class="col-xs-4">
-                <input type="text" class="form-control" placeholder="Method Group (Acceptance;Primary)">
+                <input type="text" id="method-group" class="form-control" placeholder="Method Group (Acceptance;Primary)">
               </div>
               <div class="col-xs-4">
                 <button id="saveMethodDetails" type="submit" class="btn btn-info pull-right">Save / Update</button>
@@ -572,7 +572,7 @@
 <!-- ChartJS 1.0.1 -->
 <script src="plugins/chartjs/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard2.js"></script>
+<!--<script src="dist/js/pages/dashboard2.js"></script>-->
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
@@ -586,10 +586,10 @@
 <script>
 
   // Put the object into storage
-  localStorage.setItem('taskData', JSON.stringify(taskData));
+//  localStorage.setItem('taskData', JSON.stringify(taskData));
 
   // Retrieve the object from storage
-  var taskData = localStorage.getItem('taskData');
+//  var taskData = localStorage.getItem('taskData');
 
 </script>
 
