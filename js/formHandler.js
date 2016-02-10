@@ -71,9 +71,56 @@ var fillMethodDetails = function(){
     };
 };
 
+var updateDetailsForm = function(functionSyntax, userInputArray){
+
+        $("#actionDetailsForm").empty();
+        var el = $(this);
+
+        var clickedNodeText = functionSyntax;
+
+            //el.parent().parent().text();
+/*        $(".functionDisplayName").text(clickedNodeText.trim());
+
+        var actionNodeFunction =  clickedNodeText.trim().replace(/ *\([^)]*\) *//*g, "");
+        $(".functionDisplayName").attr('name', actionNodeFunction + '()');*/
+
+        var actionNodeArray ;
+
+        try{
+            actionNodeArray = (clickedNodeText.match(/\(([^)]+)\)/)[1]).split(',');
+        }catch(e){
+
+        }
+        if(actionNodeArray.length >0){
+
+            for(var i=0;i<actionNodeArray.length;i++){
+                console.log('field for: '+actionNodeArray[i].trim());
+                console.log('field for: '+actionNodeArray[i].trim().split(' ')[0]);
+
+                $("#actionDetailsForm").append('<div class="col-sm-12" style="margin: 5px 0px 5px 0px">        <input id="'+actionNodeArray[i].trim().split(' ')[1]+'" type="text" class="form-control" id="" placeholder="'+actionNodeArray[i].trim().split(' ')[1]+'">        </div>');
+                $('#'+actionNodeArray[i].trim().split(' ')[1]).val(userInputArray[i].actVal);
+            }
+        }
+};
+
+
+
 var fillActionDetails = function(){
 
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
 
+        if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1]){
+            var currentActionNode = taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1];
+            $('.functionDisplayName').text(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].syntax);
+
+            updateDetailsForm( currentActionNode.syntax , currentActionNode.values );
+        }
+        else{
+            $('.functionDisplayName').text('');
+            $("#actionDetailsForm").empty();
+        };
+
+    }
 };
 
 
@@ -88,11 +135,14 @@ var refreshForm = function(){
     });
 }
 
-/*$('.sidebar-menu').on('click', '.treeview', function() {
-
+$( '.sidebar-menu' ).click(function() {
     refreshForm();
-});*/
+});
 
-refreshForm();
+updateCurrent(function(){
+    refreshForm();
+});
+
+
 
 // todo: reset form fields if no data exist for that node

@@ -13,8 +13,10 @@ $('#scenario').on('click','li' , function() {
 
     $('#b_scenario').attr('data-scenario', $(this).attr('id'));
 
+    taskData.scenario = currentScenario;
+    localStorage.setItem('taskData', JSON.stringify(taskData));
+
     refreshForm();
-    // todo: update scenario in LSM
 
 });
 

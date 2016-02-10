@@ -212,31 +212,39 @@ var initCurrentActionData = function(callback){
 
     var actionDetailsForm = $('#actionDetailsForm');
 
-    if(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1].init){
+    if(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1]){
 
-        currentActionDetails.name = $('.functionDisplayName').attr('name');
-        currentActionDetails.init = true;
+        if(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1].init){
 
-        if($( "#actionDetailsForm input").length){
+            currentActionDetails.name = $('.functionDisplayName').attr('name');
+            currentActionDetails.syntax = $('.functionDisplayName').text().trim();
+            currentActionDetails.init = true;
 
-            $( "#actionDetailsForm input" ).each(function( index ) {
+            if($( "#actionDetailsForm input").length){
 
-                var actKey = $( this).attr('id');
-                var actVal = $( this).val();
-                var localActionValue = { actKey : actKey, actVal : actVal}
-                addValue(currentActionDetails,'values',index, localActionValue)
+                $( "#actionDetailsForm input" ).each(function( index ) {
 
-                console.log( index + ": " +$( this).attr('id') + ' : ' + $( this).val() );
-            });
-            addValue(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1],'actions', (parseInt(currentActionNumber)-1) ,currentActionDetails);
+                    var actKey = $( this).attr('id');
+                    var actVal = $( this).val();
+                    var localActionValue = { actKey : actKey, actVal : actVal}
+                    addValue(currentActionDetails,'values',index, localActionValue)
 
+                    console.log( index + ": " +$( this).attr('id') + ' : ' + $( this).val() );
+                });
+                addValue(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1],'actions', (parseInt(currentActionNumber)-1) ,currentActionDetails);
+
+            }
+
+            localStorage.setItem('taskData', JSON.stringify(taskData));
         }
-
-        localStorage.setItem('taskData', JSON.stringify(taskData));
+        else{
+            alert('Enter Method Data First')
+        }
     }
     else{
         alert('Enter Method Data First')
     }
+
     callback();
 
 };
@@ -296,6 +304,7 @@ $( "#exportXMLTop" ).click(function() {
 
 $( "#resetLSM" ).click(function() {
     resetLSM();
+    location.reload();
 });
 
 
