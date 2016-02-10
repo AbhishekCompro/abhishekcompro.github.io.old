@@ -70,30 +70,73 @@ var taskData = {
     ]
 };
 
-resetLSM = function(){
-
-    localStorage.setItem('taskData', JSON.stringify(taskData));
-    updateCurrentTreeNode();
-
-    localStorage.setItem('currentItemNumber', JSON.stringify(1));
-    localStorage.setItem('currentMethodNumber', JSON.stringify(1));
-    localStorage.setItem('currentActionNumber', JSON.stringify(1));
-    localStorage.setItem('currentScenario', 'T1');
-
-}
-
-currentMethodDetails = {
+var currentMethodDetails = {
     init: false,
     type:'',
     group:'',
     actions:[]
 };
 
-currentActionDetails = {
+var currentActionDetails = {
     init: 'false',
     name: '',
     values: []
 };
+
+var taskDataRaw = {
+    init: false,
+    scenario: '',
+    id: '',
+    name:'',
+    description: '',
+    items:[
+        {
+            init:false,
+            methods:[]
+        },
+        {
+            init:false,
+            methods:[]
+        },
+        {
+            init:false,
+            methods:[]
+        },
+        {
+            init:false,
+            methods:[]
+        },
+        {
+            init:false,
+            methods:[]
+        }
+    ]
+};
+
+resetLSM = function(){
+
+    localStorage.setItem('taskData', JSON.stringify(taskDataRaw));
+    updateCurrentTreeNode();
+
+    localStorage.setItem('currentItemNumber', JSON.stringify(1));
+    localStorage.setItem('currentMethodNumber', JSON.stringify(1));
+    localStorage.setItem('currentActionNumber', JSON.stringify(1));
+    localStorage.setItem('currentScenario', 'T1');
+    currentMethodDetails = {
+        init: false,
+        type:'',
+        group:'',
+        actions:[]
+    };
+
+    currentActionDetails = {
+        init: 'false',
+        name: '',
+        values: []
+    };
+
+}
+
 
 var initCurrentTaskData = function(callback){
 
@@ -149,7 +192,7 @@ var saveMethodData = function(){
     initCurrentMethodData(function(){
 
         taskData =   JSON.parse(localStorage.getItem('taskData'));
-        console.log('console.log(taskData.name) 2 ' + taskData);
+        console.log('console.log(taskData.name ' + taskData);
 
     });
 
