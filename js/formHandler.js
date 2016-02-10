@@ -31,15 +31,30 @@ updateCurrent = function(callback){
 
 var fillTaskDetails = function(){
 
-    $('#inputTaskName').val(taskDataFilled.name);
-    $('#inputTaskId').val(taskDataFilled.id);
-    $('#taskDescription').val(taskDataFilled.description);
+    if(taskDataFilled.name){
+        $('#inputTaskName').val(taskDataFilled.name)
+    };
+
+    if(taskDataFilled.id){
+        $('#inputTaskId').val(taskDataFilled.id);
+    };
+
+    if(taskDataFilled.description){
+        $('#taskDescription').val(taskDataFilled.description);
+    };
 
 };
 
 var fillMethodDetails = function(){
-    $('#method-type').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].type);
-    $('#method-group').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].group);
+
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].type){
+        $('#method-type').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].type);
+    }
+
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].group){
+        $('#method-group').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].group);
+    }
+
 
 };
 

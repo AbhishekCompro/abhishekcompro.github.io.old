@@ -235,7 +235,7 @@ var saveActionData = function(){
     initCurrentActionData(function(){
 
         taskData =   JSON.parse(localStorage.getItem('taskData'));
-        console.log('console.log(taskData.name) 2 ' + taskData);
+        console.log('console.log(taskData.name) ' + taskData);
     });
 
 };
@@ -278,7 +278,7 @@ $( "#saveActionDetails" ).click(function() {
 $( "#exportXMLTop" ).click(function() {
     console.log();
     taskData =   localStorage.getItem('taskData');
-    console.log('console.log(taskData.name) 2 ' + taskData);
+    console.log('console.log(taskData.name) ' + taskData);
 });
 
 
