@@ -270,28 +270,45 @@ console.log(taskData.items[0].methods[0].init);
 console.log(taskData.items[0].methods[1].init);
 console.log(taskData);*/
 
-
-
-
-
-
 /**
  * save task data to lsm
  */
 
 $( "#saveTaskDetails" ).click(function() {
+    $( this).append('<i style="padding: 0px 10px " class="fa fa-refresh fa-spin"></i>');
+
     updateCurrentTreeNode();
     saveTaskData();
+
+    var self = this;
+    setTimeout(function() {
+        $( self).find('.fa-refresh').remove()
+    }, 1000);
+
 });
 
 $( "#saveMethodDetails" ).click(function() {
+    $( this).append('<i style="padding: 0px 10px " class="fa fa-refresh fa-spin"></i>');
+
     updateCurrentTreeNode();
     saveMethodData();
+
+    var self = this;
+    setTimeout(function() {
+        $( self).find('.fa-refresh').remove()
+    }, 1000);
 });
 
 $( "#saveActionDetails" ).click(function() {
+    $( this).append('<i style="padding: 0px 10px " class="fa fa-refresh fa-spin"></i>');
+
     updateCurrentTreeNode();
     saveActionData();
+
+    var self = this;
+    setTimeout(function() {
+        $( self).find('.fa-refresh').remove()
+    }, 1000);
 });
 
 
