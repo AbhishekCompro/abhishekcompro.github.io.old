@@ -113,6 +113,16 @@ var taskDataRaw = {
     ]
 };
 
+(function initLSM(){
+
+    taskData =   JSON.parse(localStorage.getItem('taskData'));
+
+    if(!taskData){
+        localStorage.setItem('taskData', JSON.stringify(taskDataRaw));
+    }
+
+})();
+
 resetLSM = function(){
 
     localStorage.setItem('taskData', JSON.stringify(taskDataRaw));
@@ -207,19 +217,21 @@ var initCurrentActionData = function(callback){
         currentActionDetails.name = $('.functionDisplayName').attr('name');
         currentActionDetails.init = true;
 
-        $( "#actionDetailsForm input" ).each(function( index ) {
+        if($( "#actionDetailsForm input").length){
 
-            var actKey = $( this).attr('id');
-            var actVal = $( this).val();
-            var localActionValue = { actKey : actKey, actVal : actVal}
-            addValue(currentActionDetails,'values',index, localActionValue)
+            $( "#actionDetailsForm input" ).each(function( index ) {
 
-            console.log( index + ": " +$( this).attr('id') + ' : ' + $( this).val() );
-        });
+                var actKey = $( this).attr('id');
+                var actVal = $( this).val();
+                var localActionValue = { actKey : actKey, actVal : actVal}
+                addValue(currentActionDetails,'values',index, localActionValue)
 
+                console.log( index + ": " +$( this).attr('id') + ' : ' + $( this).val() );
+            });
+            addValue(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1],'actions', (parseInt(currentActionNumber)-1) ,currentActionDetails);
 
+        }
 
-        addValue(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1],'actions', (parseInt(currentActionNumber)-1) ,currentActionDetails);
         localStorage.setItem('taskData', JSON.stringify(taskData));
     }
     else{

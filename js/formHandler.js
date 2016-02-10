@@ -33,29 +33,42 @@ var fillTaskDetails = function(){
 
     if(taskDataFilled.name){
         $('#inputTaskName').val(taskDataFilled.name)
+    }
+    else{
+        $('inputTaskName').val('');
     };
 
     if(taskDataFilled.id){
         $('#inputTaskId').val(taskDataFilled.id);
+    }
+    else{
+        $('inputTaskId').val('');
     };
 
     if(taskDataFilled.description){
         $('#taskDescription').val(taskDataFilled.description);
+    }
+    else{
+        $('taskDescription').val('');
     };
 
 };
 
 var fillMethodDetails = function(){
 
-    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].type){
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
         $('#method-type').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].type);
     }
+    else{
+        $('#method-type').val('');
+    };
 
-    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].group){
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
         $('#method-group').val(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].group);
     }
-
-
+    else{
+        $('#method-group').val('');
+    };
 };
 
 var fillActionDetails = function(){
@@ -65,16 +78,20 @@ var fillActionDetails = function(){
 
 
 var refreshForm = function(){
+    console.log('reset form')
     updateCurrent(function(){
-        fillTaskDetails();
-        fillMethodDetails();
-        fillActionDetails();
+        if(taskDataFilled){
+            fillTaskDetails();
+            fillMethodDetails();
+            fillActionDetails();
+        }
     });
 }
 
-$('.sidebar-menu').on('click', '.treeview', function() {
+/*$('.sidebar-menu').on('click', '.treeview', function() {
+
     refreshForm();
-});
+});*/
 
 refreshForm();
 

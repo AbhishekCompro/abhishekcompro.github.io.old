@@ -24,6 +24,8 @@ function updateBreadcrum(data){
         // todo: set currentTreeNode here
 
     }
+
+    refreshForm();
 }
 
 function addNewMethod(el,clickedAddMethodNodeDataTree){

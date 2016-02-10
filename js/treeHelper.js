@@ -13,6 +13,7 @@ $('#scenario').on('click','li' , function() {
 
     $('#b_scenario').attr('data-scenario', $(this).attr('id'));
 
+    refreshForm();
     // todo: update scenario in LSM
 
 });
