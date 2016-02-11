@@ -27,9 +27,13 @@
         console.log("Number of Comments = "+count);
     });
 
+// todo - categorize action list
 var actionList = {
 
-    excel   :   ["clickAt(String elementName, int pos)",
+    action  :   [],
+
+    excel   :   [
+        "clickAt(String elementName, int pos)",
         "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
         "rightClickOnCell(String cell)",
         "selectCell(String cell)",
@@ -71,20 +75,80 @@ var actionList = {
         "selectInputText(String elementName)",
         "skipToNextItem()"]
     ,
-    word    :   [""]
+    word    :   []
     ,
-    ppt     :   [""]
+    ppt     :   []
     ,
-    access  :   [""]
+    access  :   [
+        "clickAt(String elementName, int pos)",
+        "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
+        "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
+        "selectText(String elementName, int start, int end, Method methodType)",
+        "click(String elementName)",
+        "clickAtCurrentPos()",
+        "clickAndHoldCurrentPos()",
+        "clickAndHold(String elementName)",
+        "clickAndWait(String elementName)",
+        "doubleClickAndWait()",
+        "doubleClick(String elementName)",
+        "rightClickCurrentPos()",
+        "rightClick(String elementName)",
+        "dragAndDropBy(String source, String target)",
+        "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
+        "enterText(String text)",
+        "enterTextInElement(String elementName, String text)",
+        "pressControlA()",
+        "pressControlEND()",
+        "pressControlENTER()",
+        "pressControlHOME()",
+        "pressKey(MyKeys keyName)",
+        "pressNreleaseKey(MyKeys keyName)",
+        "releaseKey(MyKeys keyName)",
+        "moveByOffset(int xOffset, int yOffset)",
+        "moveToElementCenter(String elementName)",
+        "moveToElement(String elementName, int xOffset, int yOffset)",
+        "moveToElementPercent(String elementName, double xOffsetPercent, double yOffsetPercent)",
+        "release()",
+        "releaseElement(String elementName)",
+        "waitFor()",
+        "waitForSec(int time)",
+        "clearText(String elementName)",
+        "scroll(String elementName)",
+        "selectFromDropdown(String elementName, String parameter)",
+        "selectInputText(String elementName)",
+        "skipToNextItem()"
+    ]
 };
 
 console.log(actionList.excel.length);
 
 var initactionList = function(){
 
-    for(var i=0;i<actionList.excel.length;i++){
+    for(var i=0;i<actionList.action.length;i++){
 
         $("#layout-skins-list tbody").append('                <tr>                  <td><code>'+actionList.excel[i]+'</code></td>                  <td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>                </tr>')
+
+    }
+
+    var currentApplication = "excel";   // todo - change this & categorize action list
+    var filteredActionList;
+
+    if(currentApplication == 'excel'){
+        filteredActionList = actionList.excel;
+    }
+    if(currentApplication == 'word'){
+        filteredActionList = actionList.word;
+    }
+    if(currentApplication == 'ppt'){
+        filteredActionList = actionList.ppt;
+    }
+    if(currentApplication == 'access'){
+        filteredActionList = actionList.access;
+    }
+
+    for(var i=0;i<filteredActionList.length;i++){
+
+        $("#layout-skins-list tbody").append('                <tr>                  <td><code>'+filteredActionList[i]+'</code></td>                  <td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>                </tr>')
 
     }
 };
