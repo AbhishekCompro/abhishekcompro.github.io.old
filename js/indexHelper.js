@@ -139,6 +139,8 @@ $('.sidebar-menu').on('click', '.delete-action-node', function() {
     updateBreadcrum({"item":"","method":"","action":""});
     actionTree.remove();
 
+    delete taskData.items[parseInt(currentAddActionData.item)-1].methods[parseInt(currentAddActionData.method)-1].actions[parseInt(currentAddActionData.action)-1];
+
 });
 
 $('.sidebar-menu').on('click', '.delete-method-node', function() {
@@ -154,10 +156,16 @@ $('.sidebar-menu').on('click', '.delete-method-node', function() {
     methodTree.prev().find('a').append('<span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>');
 
     var currentAddMethodData = methodTree.next().data('tree');
+
+    // todo - update taskData & LSM
+    //currentAddMethodData
+
     var updatedAddMethodData = {"item":currentAddMethodData.item,"method":(parseInt(currentAddMethodData.method) - 1),"action":""}
     methodTree.next().data('tree', updatedAddMethodData);
 
     updateBreadcrum({"item":"","method":"","action":""});
     methodTree.remove();
+
+    delete taskData.items[parseInt(currentAddMethodData.item)-1].methods[parseInt(currentAddMethodData.method)-1];
 
 });

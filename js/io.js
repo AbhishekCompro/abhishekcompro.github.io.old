@@ -260,16 +260,6 @@ var saveActionData = function(){
 
 };
 
-//console.log(taskData.items[0].methods.length);
-/*addValue(taskData.items[0],'methods',currentMethodDetails)
-addValue(taskData.items[0],'methods',currentMethodDetails)*/
-
-/*console.log(taskData.items[0].methods.length);
-
-console.log(taskData.items[0].methods[0].init);
-console.log(taskData.items[0].methods[1].init);
-console.log(taskData);*/
-
 /**
  * save task data to lsm
  */
