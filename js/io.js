@@ -314,6 +314,8 @@ $( "#resetLSM" ).click(function() {
     location.reload();
 });
 
+resetLSM();
+
 
 
 /**
