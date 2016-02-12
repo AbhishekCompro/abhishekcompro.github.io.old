@@ -103,9 +103,9 @@
             </a>
           </li>
           <!-- Control Sidebar Toggle Button -->
-<!--          <li>
+          <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>-->
+          </li>
         </ul>
       </div>
 
@@ -275,7 +275,7 @@
                 </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Export / Download</button>
+                <button id="downloadFromPreviewXML" type="button" class="btn btn-primary">Export / Download</button>
               </div>
             </div>
           </div>
@@ -390,7 +390,7 @@
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs" style="margin-top:30px">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
@@ -583,6 +583,9 @@
 <script src="./xmlHandler/vkbeautify.0.99.00.beta.js"></script>
 <script src="./xmlHandler/index.js"></script>
 <script src="./js/io.js"></script>
+<script src="./js/xmlCreater.js"></script>
+<script src="./js/download2.js"></script>
+<!--http://danml.com/download.html-->
 
 <script>
 
@@ -594,11 +597,11 @@
 
 </script>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
   window.onbeforeunload = function() {
     return "Are you sure you want to refresh the page ? This will delete all unsaved data!";
   }
-</script>
+</script>-->
 
 </body>
 </html>

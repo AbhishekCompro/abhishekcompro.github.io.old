@@ -106,10 +106,10 @@ var updateDetailsForm = function(functionSyntax, userInputArray){
 
 
 var fillActionDetails = function(){
+try{
+    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].init){
 
-    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
-
-        if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1]){
+        if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].init){
             var currentActionNode = taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1];
             $('.functionDisplayName').text(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].syntax);
 
@@ -121,6 +121,12 @@ var fillActionDetails = function(){
         };
 
     }
+
+}catch(err){
+    $('.functionDisplayName').text('');
+    $("#actionDetailsForm").empty();
+}
+
 };
 
 

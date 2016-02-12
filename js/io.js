@@ -185,7 +185,7 @@ var initCurrentMethodData = function(callback){
         console.log('currentItemNumber' + currentItemNumber);
         console.log('currentMethodNumber' + currentMethodNumber);
 
-        taskData.items[parseInt(currentItemNumber)].init = true;
+        taskData.items[parseInt(currentItemNumber) - 1].init = true;
         addValue(taskData.items[parseInt(currentItemNumber)-1],'methods', (parseInt(currentMethodNumber)-1) ,currentMethodDetails);
         localStorage.setItem('taskData', JSON.stringify(taskData));
     }

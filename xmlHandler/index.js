@@ -2,6 +2,7 @@
  * Created by AbhishekK on 2/3/2016.
  */
 
+/*
 
 
 var generateXMl = function(){
@@ -17,4 +18,4 @@ $( "#previewXml" ).on( "click", function() {
     prettyXML = vkbeautify.xml(sampleXML);
     console.log(prettyXML);
     $('#prettyXmlModalBody').text(prettyXML);
-});
+});*/

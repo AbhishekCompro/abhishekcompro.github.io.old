@@ -9,7 +9,7 @@ $('#scenario').on('click','li' , function() {
 
     $('#b_scenario').html('<i class="fa fa-dashboard"> Scenario ' + $(this).attr('id'));
 
-    localStorage.setItem('currentScenario', JSON.stringify(currentScenario));
+    localStorage.setItem('currentScenario', currentScenario);
 
     $('#b_scenario').attr('data-scenario', $(this).attr('id'));
 
