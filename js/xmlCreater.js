@@ -88,21 +88,23 @@ $( "#downloadFromPreviewXML" ).on( "click", function() {
     var prettyXML;
 
     prettyXML = vkbeautify.xml(sampleXML);
-    console.log(taskData.scenario);
 
     var xmlFilename = (taskData.id +'_'+ taskData.scenario).replace(/\./gi, "_");
-    console.log('xmlFilename '+xmlFilename);
 
     download(new Blob([prettyXML]), xmlFilename+".xml", "text/plain");
-    //download(prettyXML,xmlFilename,"text/plain");
 });
 
 
 $( "#exportXMLTop" ).click(function() {
-    console.log();
     taskData =   localStorage.getItem('taskData');
     console.log('console.log(taskData.name) ' + taskData);
 
-    console.log('taskxml');
-    getTaskDataFromLsm();
+    var sampleXML = getTaskDataFromLsm();
+    var prettyXML;
+
+    prettyXML = vkbeautify.xml(sampleXML);
+
+    var xmlFilename = (taskData.id +'_'+ taskData.scenario).replace(/\./gi, "_");
+
+    download(new Blob([prettyXML]), xmlFilename+".xml", "text/plain");
 });
