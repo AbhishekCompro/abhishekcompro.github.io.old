@@ -144,10 +144,17 @@ var taskRunDataToXMl = function(){
 };
 
 
+var prettyRunJava = function(){
+    // todo - update below loops on basis of user run config selection {handle item & method to run here}
+    var prettyJavaFileContent = '';
+
+
+    return prettyJavaFileContent;
+};
+
 var getRunTaskDataFromLsm = function(){
     return taskRunDataToXMl();
 };
-
 
 
 $( "#previewXml" ).on( "click", function() {
@@ -166,28 +173,28 @@ var updateRunXml = function(){
 };
 
 var updateRunJava = function(){
-    localStorage.setItem('updatedRunJava', JSON.stringify(''));
-// todo - update below loops on basis of user run config selection {handle method to run here}
 
+    var updatedRunJava = prettyRunJava();
+
+    console.log(updatedRunJava);
+    localStorage.setItem('updatedRunJava', JSON.stringify(updatedRunJava));
+    return updatedRunJava;
 };
 
 $("#runTaskOnServer").click(function(){
     var prettyRunXML = updateRunXml();
-    //window.open('http://localhost:3000/testrun');
+    var prettyRunJava = updateRunJava();
 
     window.open ("http://localhost:3000/testrun",",","menubar=1,resizable=1,width=500,height=200");
 
     setTimeout(function(){
-
-        $.post("http://localhost:3000/testrun",{xmldata: prettyRunXML}, function(data){
+        $.post("http://localhost:3000/testrun",{xmlFilename:'',xmldata: prettyRunXML,javaFilename:'',javadata: prettyRunJava}, function(data){
             if(data==='done')
             {
                 alert("post success");
             }
         });
-
-    }, 3000);
-
+    }, 2000);
 });
 
 $( "#run-conf-sidebar" ).click(function() {
