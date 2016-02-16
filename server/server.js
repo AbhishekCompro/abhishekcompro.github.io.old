@@ -17,7 +17,14 @@ app.post('/login',function(req,res){
 app.get('/testrun',function(req,res){
   res.sendfile("index.html");
   console.log("xml: "+req.query.xml+" java: "+req.query.java);
-  res.end("yes. " + "xml: "+req.query.xml+" java: "+req.query.java);
+  //res.end("yes. " + "xml: "+req.query.xml+" java: "+req.query.java);
+});
+
+app.post('/testrun',function(req,res){
+  res.sendfile("index.html");
+  var xmldata=req.body.xmldata;
+  console.log("inside test run " + xmldata);
+  //res.end("yes. " + "xml: "+req.query.xml+" java: "+req.query.java);
 });
 
 

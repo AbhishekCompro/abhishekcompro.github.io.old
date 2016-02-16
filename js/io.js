@@ -49,22 +49,27 @@ var taskData = {
     items:[
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         }
     ]
@@ -92,22 +97,27 @@ var taskDataRaw = {
     items:[
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         },
         {
             init:false,
+            skip:false,
             methods:[]
         }
     ]

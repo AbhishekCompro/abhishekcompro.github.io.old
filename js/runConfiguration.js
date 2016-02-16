@@ -55,7 +55,28 @@ var renderRunConfiguration = function(){
 
 var taskData;
 
+var updateSkipItem = function(){
+
+    taskData =   JSON.parse(localStorage.getItem('taskData'));
+
+    for(var i=0;i<taskData.items.length;i++){
+
+        if(taskData.items[i].init){
+
+            var checkboxChecked = $('#run-item-'+(i+1)).prop('checked');
+            console.log(i +' : '+ checkboxChecked);
+            if(checkboxChecked === false){
+                taskData.items[i].skip = true;
+            }
+        }
+    }
+
+    localStorage.setItem('taskData', JSON.stringify(taskData));
+    console.log('***************** taskData '+ JSON.stringify(taskData));
+};
+
 var taskRunDataToXMl = function(){
+    updateSkipItem();
 
     taskData =   JSON.parse(localStorage.getItem('taskData'));
 
@@ -77,45 +98,48 @@ var taskRunDataToXMl = function(){
 
     for(var i=0;i<taskData.items.length;i++){
 
-        // todo - update below loops on basis of user run config selection {handle item comment & skip item here}
+        // todo - update below loops on basis of user run config selection {handle skip item here}
 
         if(taskData.items[i].init){
 
             taskDataPre = taskDataPre + '<Item sno="'+(i+1)+'">';
-            taskDataPost = '</Item>'+ taskDataPost;
 
             for(var j=0;j<taskData.items[i].methods.length;j++){
 
                 if(taskData.items[i].methods[j].init){
                     taskDataPre = taskDataPre + '<Method group="'+taskData.items[i].methods[j].group+'" name="'+taskData.items[i].methods[j].group+'" sno="'+(j+1)+'"><Actions>';
 
-                    taskDataPost = '</Actions></Method>'+ taskDataPost;
-
                     for(var k=0;k<taskData.items[i].methods[j].actions.length;k++){
 
                         if(taskData.items[i].methods[j].actions[k].init){
-                            taskDataPre = taskDataPre + '<Action sno="'+(k+1)+'"><actionType name="'+(taskData.items[i].methods[j].actions[k].name).toString().trim().replace("()","")+'">';
+                            var jin=0;
+                            if(i>0){
+                                if(taskData.items[i-1].skip == true){
+                                        jin=1;
+                                        taskDataPre = taskDataPre + '<Action sno="'+(k+1)+'"><actionType name="skipItem"></actionType></Action>';
+                                };
+                            }
+                            taskDataPre = taskDataPre + '<Action sno="'+(k+jin+1)+'"><actionType name="'+(taskData.items[i].methods[j].actions[k].name).toString().trim().replace("()","")+'">';
 
                             for(var l=0;l<taskData.items[i].methods[j].actions[k].values.length;l++){
                                 taskDataPre = taskDataPre + '<'+taskData.items[i].methods[j].actions[k].values[l].actKey+'>'+taskData.items[i].methods[j].actions[k].values[l].actVal+'</'+taskData.items[i].methods[j].actions[k].values[l].actKey+'>';
                             }
-
                             taskDataPre = taskDataPre + '</actionType></Action>';
                         }
                     }
-
+                    taskDataPre = taskDataPre + '</Actions></Method>';
                 }
             }
-
+            taskDataPre = taskDataPre + '</Item>';
         }
     }
 
-    var updateRunXml = xmlPre + taskDataPre + taskDataPost + xmlPost;
+    var updatedRunXml = xmlPre + taskDataPre + taskDataPost + xmlPost;
 
-    localStorage.setItem('updateRunXml', JSON.stringify(updateRunXml));
-    console.log(updateRunXml);
+    localStorage.setItem('updatedRunXml', JSON.stringify(updatedRunXml));
+    //console.log(updatedRunXml);
 
-    return updateRunXml;
+    return updatedRunXml;
 
 };
 
@@ -127,29 +151,44 @@ var getRunTaskDataFromLsm = function(){
 
 
 $( "#previewXml" ).on( "click", function() {
-    var sampleRunXML = getRunTaskDataFromLsm();
-    var prettyRunXML;
-
-    prettyRunXML = vkbeautify.xml(sampleXML);
-    console.log(prettyRunXML);
 
 });
 
 var updateRunXml = function(){
-    localStorage.setItem('updateRunXml', JSON.stringify(''));
 
+    var sampleRunXML = getRunTaskDataFromLsm();
+    var prettyRunXML;
 
-
+    prettyRunXML = vkbeautify.xml(sampleRunXML);
+    console.log(prettyRunXML);
+    localStorage.setItem('updatedRunXml', JSON.stringify(prettyRunXML));
+    return prettyRunXML;
 };
 
 var updateRunJava = function(){
-    localStorage.setItem('updateRunJava', JSON.stringify(''));
+    localStorage.setItem('updatedRunJava', JSON.stringify(''));
 // todo - update below loops on basis of user run config selection {handle method to run here}
 
 };
 
+$("#runTaskOnServer").click(function(){
+    var prettyRunXML = updateRunXml();
+    //window.open('http://localhost:3000/testrun');
 
+    window.open ("http://localhost:3000/testrun",",","menubar=1,resizable=1,width=500,height=200");
 
+    setTimeout(function(){
+
+        $.post("http://localhost:3000/testrun",{xmldata: prettyRunXML}, function(data){
+            if(data==='done')
+            {
+                alert("post success");
+            }
+        });
+
+    }, 3000);
+
+});
 
 $( "#run-conf-sidebar" ).click(function() {
     renderRunConfiguration();

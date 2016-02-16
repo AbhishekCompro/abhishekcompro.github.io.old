@@ -29,14 +29,11 @@ var taskDataToXMl = function(){
         if(taskData.items[i].init){
 
             taskDataPre = taskDataPre + '<Item sno="'+(i+1)+'">';
-            taskDataPost = '</Item>'+ taskDataPost;
 
             for(var j=0;j<taskData.items[i].methods.length;j++){
 
                 if(taskData.items[i].methods[j].init){
                     taskDataPre = taskDataPre + '<Method group="'+taskData.items[i].methods[j].group+'" name="'+taskData.items[i].methods[j].group+'" sno="'+(j+1)+'"><Actions>';
-
-                    taskDataPost = '</Actions></Method>'+ taskDataPost;
 
                     for(var k=0;k<taskData.items[i].methods[j].actions.length;k++){
 
@@ -50,10 +47,10 @@ var taskDataToXMl = function(){
                             taskDataPre = taskDataPre + '</actionType></Action>';
                         }
                     }
-
+                    taskDataPre = taskDataPre + '</Actions></Method>';
                 }
             }
-
+            taskDataPre = taskDataPre + '</Item>';
         }
     }
 
